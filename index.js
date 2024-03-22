@@ -9,10 +9,37 @@ const app = express()
 app.use(cors())
 
 // 設置監聽的 port (後端 URL 會是 localhost:[PORT])
-const PORT = 3000
+const PORT = 5000
 
 // 小數點後保留位數
-const ROUND = 5
+// const ROUND = 5
+
+// 運算式
+class Calculator {
+  constructor(round) {
+    this.round = round
+  }
+
+  plus(v1, v2) {
+    const answer = v1 + v2
+    return answer
+  }
+
+  minus(v1, v2) {
+    const answer = v1 - v2
+    return answer
+  }
+
+  divide(v1, v2) {
+    const answer = Number((v1 / v2).toFixed(this.ROUND))
+    return answer
+  }
+
+  multiply(v1, v2) {
+    const answer = v1 * v2
+    return answer
+  }
+}
 
 // 處理 GET localhost:[PORT] 的請求(註：localhost:[PORT] 和 localhost:[PORT]/ 是等價的，結尾有無 / 都一樣)
 // req: 前端發送來的請求物件
@@ -29,13 +56,18 @@ app.get('/', (req, res) => {
 // ex:
 // request: /plus?v1=3&v2=7
 // response: { answer: 10 }
+
+const c = new Calculator(5)
+
 app.get('/plus', (req, res) => {
   const QUERY = req.query
+  console.log(QUERY)
   // v1 和 v2 必須為數字，目前尚未處理非數字的情況
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
+  const answer = c.plus(v1, v2)
   res.json({
-    answer: v1 + v2,
+    answer // answer: answer
   })
 })
 
@@ -47,8 +79,9 @@ app.get('/minus', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
+  const answer = c.minus(v1, v2)
   res.json({
-    answer: v1 - v2,
+    answer
   })
 })
 
@@ -60,8 +93,9 @@ app.get('/multiply', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
+  const answer = c.multiply(v1, v2)
   res.json({
-    answer: v1 * v2,
+    answer
   })
 })
 
@@ -73,12 +107,20 @@ app.get('/divide', (req, res) => {
   const QUERY = req.query
   const v1 = Number(QUERY.v1)
   const v2 = Number(QUERY.v2)
+  const answer = c.divide(v1, v2)
   // 預設只保留小數點後 ROUND 位
-  const answer = Number((v1 / v2).toFixed(ROUND))
+  // const answer = Number((v1 / v2).toFixed(ROUND))
   res.json({
-    answer,
+    answer
   })
 })
+
+// 處理 GET localhost:[PORT]/formula?value=1+3/3*4 的請求
+// app.get('/formula?', (req, res) => {  //正規表達式
+//   const QUERY = req.query
+//   const value = QUERY.value
+//   res.json({ answer: value })
+// })
 
 app.listen(PORT, () => {
   console.log(`express server is running on http://localhost:${PORT}`)
