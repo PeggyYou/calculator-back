@@ -4,26 +4,6 @@ class Calculator {
     this.round = round
   }
 
-  plus(v1, v2) {
-    const answer = v1 + v2
-    return answer
-  }
-
-  minus(v1, v2) {
-    const answer = v1 - v2
-    return answer
-  }
-
-  divide(v1, v2) {
-    const answer = Number((v1 / v2).toFixed(this.round))
-    return answer
-  }
-
-  multiply(v1, v2) {
-    const answer = v1 * v2
-    return answer
-  }
-
   // 統包計算公式 (一次處理加減乘除)
   formula(value) {
     const decodedStr = decodeURIComponent(value)
