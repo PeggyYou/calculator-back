@@ -1,5 +1,5 @@
 const Router = require('express')
-const Calculation = require('../services')
+const { Calculation }= require('../services')
 
 const router = Router()
 

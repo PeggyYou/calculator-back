@@ -1,3 +1,4 @@
+const History = require('./history')
 class Calculator {
   // 小數點後保留位數 ( 預設值: 5 )
   constructor(round = 5) {
@@ -8,6 +9,7 @@ class Calculator {
   compute(formula) {
     const elements = this.parse(formula)
     const answer = this.compute_(elements)
+    History.add(formula, answer)
     return answer
   }
 
@@ -108,7 +110,7 @@ class Calculator {
 }
 
 // 建立 Calculator 實例，取到小數點第五位數
-const Calculation = new Calculator(5)
+const Calculation = new Calculator()
 
 // 其他路徑得引用 class Calculator
 module.exports = Calculation
