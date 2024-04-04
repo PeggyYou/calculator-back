@@ -4,9 +4,7 @@ class Calculator {
     this.round = round
   }
 
-<<<<<<< HEAD
   // 統包計算公式 (一次處理加減乘除)
-=======
   // 運算: (1)拆解數字及運算符號 (2)依運算子優先順序運算
   compute(formula) {
     const elements = this.parse(formula)
@@ -98,7 +96,6 @@ class Calculator {
   }
 
   // 版本1: 統包計算公式 (一次處理加減乘除) => 棄用，程式碼太複雜，不利使用
->>>>>>> feature/task2-formula-algorithm
   formula(value) {
     // const decodedStr = decodeURIComponent(value)
     const decodedStr = value
