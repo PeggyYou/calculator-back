@@ -1,6 +1,6 @@
 class Calculator {
-  // 小數點後保留位數
-  constructor(round) {
+  // 小數點後保留位數 ( 預設值: 5 )
+  constructor(round = 5) {
     this.round = round
   }
 
@@ -91,6 +91,18 @@ class Calculator {
         }
       default:
         return 'Error: Invalid operator'
+    }
+  }
+
+  // 改變小數點後保留位數
+  roundChanged(round) {
+    if (/^\d+$/.test(round)) {
+      // 若為0~正整數，修改位數
+      this.round = round
+      return '小數點後保留位數修改成功!'
+    } else {
+      // 若非0或非正整數，回報錯誤訊息
+      return '請輸入0或正整數的值。'
     }
   }
 }
