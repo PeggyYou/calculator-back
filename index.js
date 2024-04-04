@@ -12,10 +12,7 @@ app.use(cors())
 const PORT = 3000
 
 // 引用 class Calculator
-const Calculator = require('./services/formula')
-
-// 建立 Calculator 實例 (數字取到小數點第五位)
-const c = new Calculator(5)
+const { calculator } = require('./services')
 
 // 處理 GET localhost:[PORT]/formula?value=12+2-4*5/2 的請求
 // ex:
@@ -24,7 +21,9 @@ const c = new Calculator(5)
 app.get('/formula', (req, res) => {
   const QUERY = req.query
   const value = QUERY.value
-  const answer = c.formula(value)
+  // const answer = calculator.formula(value)
+  const answer = calculator.compute(value)
+  console.log(calculator.compute(value))
   res.json({
     answer
   })
