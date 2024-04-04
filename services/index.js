@@ -1,7 +1,5 @@
 // 引用 class Calculator
-const Calculator = require('./formula')
+const Calculation = require('./calculator')
+const History = require('./history')
 
-// 建立 Calculator 實例 (數字取到小數點第五位)
-const calculator = new Calculator(5)
-
-module.exports = { calculator }
+module.exports = { Calculation, History }

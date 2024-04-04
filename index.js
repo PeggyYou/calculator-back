@@ -8,26 +8,15 @@ const app = express()
 // 使用 cors 中間件，允許不同網域來的請求，免於同源策略的限制
 app.use(cors())
 
+// 告訴 Express 應用程式要使用 express.json() 中間件來解析請求主體中的 JSON 格式資料
+app.use(express.json())
+
 // 設置監聽的 port (後端 URL 會是 localhost:[PORT])
 const PORT = 3000
 
-// 引用 class Calculator
-const { calculator } = require('./services')
-
-// 處理 GET localhost:[PORT]/formula?value=12+2-4*5/2 的請求
-// ex:
-// request: /formula?value=1+2-4*5/6
-// response: { answer: 4 }
-app.get('/formula', (req, res) => {
-  const QUERY = req.query
-  const value = QUERY.value
-  // const answer = calculator.formula(value)
-  const answer = calculator.compute(value)
-  console.log(calculator.compute(value))
-  res.json({
-    answer
-  })
-})
+// 引用及使用路由
+const router = require('./routes')
+app.use(router)
 
 app.listen(PORT, () => {
   console.log(`express server is running on http://localhost:${PORT}`)
