@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 // request: /v1?round=12
 // response: { feedback: "成功" }
 router.put('/', (req, res) => {
-  const QUERY = req.query
+  const QUERY = req.body
   const round = QUERY.round
   let feedback = Calculation.roundChanged(round)
   res.json({
