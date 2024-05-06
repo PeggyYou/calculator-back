@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
   })
 })
 
-// 處理 PUT localhost:[PORT]/calculation?round=12 的請求
+// 處理 PUT localhost:[PORT]/calculation 的請求
 // ex:
-// request: /v1?round=12
-// response: { feedback: "成功" }
+// request: { round: 3 }
+// response: { feedback: "小數點後保留位數修改成功!" }
 router.put('/', (req, res) => {
   const QUERY = req.body
   const round = QUERY.round
